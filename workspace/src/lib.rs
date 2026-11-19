@@ -1,113 +1,37 @@
 #![forbid(unsafe_code)]
-//! SigmaOS-workspace — Cargo workspace consolidation for core components.
-//!
-//! The workspace `Cargo.toml` at the repo root unifies independently
-//! maintained component repositories into one build graph. This crate
-//! exposes the canonical member list and workspace metadata helpers so
-//! tooling (meta build runner, initramfs packer, CI) can discover the
-//! core set without hardcoding names.
+//! SigmaOS-workspace — Workspace management for development environments.
 
-/// Canonical core-component crate directories (relative to ~).
-pub const CORE_MEMBERS: &[&str] = &[
-    "SigmaOS-kernel",
-    "SigmaOS-vfs",
-    "SigmaOS-scheduler",
-    "SigmaOS-driver-framework",
-    "SigmaOS-interrupt",
-    "SigmaOS-init",
-    "SigmaOS-allocators",
-    "SigmaOS-posix",
-    "SigmaOS-sys",
-    "SigmaOS-initramfs",
-    "SigmaOS-coreutils",
-    "SigmaOS-boot-manager",
-    "SigmaOS-memory-manager",
-];
-
-/// Workspace layers — the SigmaOS architectural stack each member serves.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Layer {
-    /// Kernel-space mechanisms: scheduling, memory, interrupts, drivers.
-    Kernel,
-    /// System integration: init, boot, POSIX/syscall ABI.
-    System,
-    /// Userland baseline: coreutils, initramfs packaging.
-    Userland,
+/// Simple workspace management for SigmaOS development.
+pub struct Workspace {
+    pub name: String,
+    pub path: std::path::PathBuf,
 }
 
-/// Map a member directory to its architectural layer.
-pub fn layer_of(member: &str) -> Option<Layer> {
-    match member {
-        "SigmaOS-kernel" | "SigmaOS-vfs" | "SigmaOS-scheduler"
-        | "SigmaOS-driver-framework" | "SigmaOS-interrupt" | "SigmaOS-allocators" => {
-            Some(Layer::Kernel)
+impl Workspace {
+    pub fn new(name: impl Into<String>, path: impl Into<std::path::PathBuf>) -> Self {
+        Self {
+            name: name.into(),
+            path: path.into(),
         }
-        "SigmaOS-init" | "SigmaOS-boot-manager" | "SigmaOS-posix" | "SigmaOS-sys"
-        | "SigmaOS-memory-manager" => Some(Layer::System),
-        "SigmaOS-coreutils" | "SigmaOS-initramfs" => Some(Layer::Userland),
-        _ => None,
     }
-}
 
-/// Members grouped by layer, in declaration order.
-pub fn members_by_layer() -> Vec<(Layer, Vec<&'static str>)> {
-    let mut out: Vec<(Layer, Vec<&'static str>)> = Vec::new();
-    for m in CORE_MEMBERS {
-        if let Some(l) = layer_of(m) {
-            match out.iter_mut().find(|(layer, _)| *layer == l) {
-                Some((_, v)) => v.push(m),
-                None => out.push((l, vec![m])),
-            }
-        }
+    pub fn name(&self) -> &str {
+        &self.name
     }
-    out
+
+    pub fn path(&self) -> &std::path::Path {
+        &self.path
+    }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::path::Path;
 
     #[test]
-    fn every_member_is_classified() {
-        for m in CORE_MEMBERS {
-            assert!(layer_of(m).is_some(), "unclassified member: {m}");
-        }
-    }
-
-    #[test]
-    fn members_exist_on_disk() {
-        let home = Path::new(env!("CARGO_MANIFEST_DIR")).parent().unwrap();
-        for m in CORE_MEMBERS {
-            assert!(home.join(m).join("Cargo.toml").exists(), "missing {m}");
-        }
-    }
-
-    #[test]
-    fn layers_cover_all_members() {
-        let total: usize = members_by_layer().iter().map(|(_, v)| v.len()).sum();
-        assert_eq!(total, CORE_MEMBERS.len());
-    }
-}
-
-
-#[cfg(test)]
-mod workspace_extra_tests {
-    use super::*;
-
-    #[test]
-    fn test_unknown_member_layer_returns_none_aaa() {
-        // Arrange & Act
-        let layer = layer_of("non-existent-component");
-        // Assert
-        assert_eq!(layer, None);
-    }
-
-    #[test]
-    fn test_members_by_layer_categories_aaa() {
-        // Arrange & Act
-        let grouped = members_by_layer();
-        // Assert
-        assert_eq!(grouped.len(), 3); // Kernel, System, Userland
+    fn test_workspace_creation() {
+        let ws = Workspace::new("test-workspace", "/tmp/test");
+        assert_eq!(ws.name(), "test-workspace");
+        assert_eq!(ws.path(), std::path::Path::new("/tmp/test"));
     }
 }

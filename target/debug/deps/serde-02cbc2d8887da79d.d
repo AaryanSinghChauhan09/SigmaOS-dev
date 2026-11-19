@@ -1,0 +1,14 @@
+/tmp/SigmaOS-dev/target/debug/deps/serde-02cbc2d8887da79d.d: /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /tmp/SigmaOS-dev/target/debug/build/serde-045d6d86c89f5c13/out/private.rs
+
+/tmp/SigmaOS-dev/target/debug/deps/libserde-02cbc2d8887da79d.rlib: /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /tmp/SigmaOS-dev/target/debug/build/serde-045d6d86c89f5c13/out/private.rs
+
+/tmp/SigmaOS-dev/target/debug/deps/libserde-02cbc2d8887da79d.rmeta: /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs /home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs /tmp/SigmaOS-dev/target/debug/build/serde-045d6d86c89f5c13/out/private.rs
+
+/home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/lib.rs:
+/home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/integer128.rs:
+/home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/mod.rs:
+/home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/de.rs:
+/home/aaryansinghchauhan/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/serde-1.0.229/src/private/ser.rs:
+/tmp/SigmaOS-dev/target/debug/build/serde-045d6d86c89f5c13/out/private.rs:
+
+# env-dep:OUT_DIR=/tmp/SigmaOS-dev/target/debug/build/serde-045d6d86c89f5c13/out
