@@ -2,24 +2,29 @@
 name = "sigmaos-workspace"
 version = "0.1.0"
 edition = "2021"
-authors = ["SigmaOS Team"]
-license = "MIT OR Apache-2.0"
-description = "Workspace management"
-
-[lib]
-name = "sigmaos_workspace"
-path = "src/lib.rs"
-
-[[bin]]
-name = "sigmaos-workspace"
-path = "src/main.rs"
+description = "SigmaOS core workspace manifest and component metadata"
+license = "MIT"
 
 [dependencies]
-anyhow = "1.0"
-thiserror = "1.0"
-log = "0.4"
-env_logger = "0.10"
-serde = { version = "1.0", features = ["derive"] }
-toml = "0.8"
+sigmaos_initramfs = { path = "crates/initramfs" }
 
-[dev-dependencies]
+[workspace]
+resolver = "2"
+# Core SigmaOS component crates — canonical members of the OS workspace.
+# crates/* are symlinks to the independent component repositories
+# (one repository per component), unified here for coherent builds.
+members = [
+    "crates/SigmaOS-kernel",
+    "crates/vfs",
+    "crates/scheduler",
+    "crates/driver_framework",
+    "crates/init",
+    "crates/posix",
+    "crates/sys",
+    "crates/initramfs",
+    "crates/coreutils",
+    "crates/boot_manager",
+    "crates/memory_manager",
+    "crates/interrupt",
+    "crates/allocators",
+]
