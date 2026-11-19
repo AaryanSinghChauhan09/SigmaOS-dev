@@ -1,0 +1,14 @@
+[package]
+name = "sigmaos_agent_cli"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "sigmaos_agent_cli"
+path = "src/lib.rs"
+
+[[bin]]
+name = "sigmaos_agent_cli"
+path = "src/main.rs"
+
+[dependencies]
